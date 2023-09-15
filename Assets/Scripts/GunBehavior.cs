@@ -12,6 +12,8 @@ public class GunBehavior : MonoBehaviour
     [SerializeField] private float _dmgPerBullet;
     [SerializeField] private MainUIHandler _mainUIHandler;
     [SerializeField] private ParticleSystem _gunshotParticles;
+    [SerializeField] private Transform _bulletSpawnerTransform;
+    [SerializeField] private int _bulletForce;
     public int AmmoCount
     {
         get { return _ammoCount; }
@@ -82,7 +84,18 @@ public class GunBehavior : MonoBehaviour
 
     private void Gunshot()
     {
-        
+        GameObject ammoPooled = ObjectPooler.SharedInstance.GetPooledObject();
+        if (ammoPooled != null)
+        {
+            ammoPooled.transform.position = _bulletSpawnerTransform.position;
+            ammoPooled.SetActive(true);
+            
+            Rigidbody rb = ammoPooled.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddForce(_bulletForce * _bulletSpawnerTransform.forward);
+            }
+        }
     }
 
     private void ReloadGun()
@@ -100,6 +113,7 @@ public class GunBehavior : MonoBehaviour
             // degats
             // son
             _gunshotParticles.Play();
+            Gunshot();
             AmmoCount--;
             _mainUIHandler.UpdateAmmoAmount(AmmoCount, MaxAmmoCapacity);
             yield return new WaitForSeconds(FireRate);
