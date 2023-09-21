@@ -14,6 +14,7 @@ public class GunBehavior : MonoBehaviour
     [SerializeField] private ParticleSystem _gunshotParticles;
     [SerializeField] private Transform _bulletSpawnerTransform;
     [SerializeField] private int _bulletForce;
+    [SerializeField] private ObjectPooler ammoPooler;
     public int AmmoCount
     {
         get { return _ammoCount; }
@@ -84,7 +85,7 @@ public class GunBehavior : MonoBehaviour
 
     private void Gunshot()
     {
-        GameObject ammoPooled = ObjectPooler.SharedInstance.GetPooledObject();
+        GameObject ammoPooled = ammoPooler.GetPooledObject();
         if (ammoPooled != null)
         {
             ammoPooled.transform.position = _bulletSpawnerTransform.position;

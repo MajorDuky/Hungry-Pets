@@ -5260,6 +5260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881307589743258015}
   - component: {fileID: -4637238916101565616}
+  - component: {fileID: -1076056514207667892}
   m_Layer: 0
   m_Name: GunPrefab
   m_TagString: Untagged
@@ -5316,7 +5317,22 @@ MonoBehaviour:
   _gunshotParticles: {fileID: 4685552690755119250}
   _bulletSpawnerTransform: {fileID: 4869567359892687327}
   _bulletForce: 1000
+  ammoPooler: {fileID: -1076056514207667892}
   isShooting: 0
+--- !u!114 &-1076056514207667892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623945257482284114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2946a3bc4c425bc4cac9a9524ffed346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToPool: {fileID: 6391963772392679220, guid: 4db4e25c1263171499bc32443a67c51b, type: 3}
+  _amountToPool: 10
 --- !u!1 &4402727130638135656
 GameObject:
   m_ObjectHideFlags: 0

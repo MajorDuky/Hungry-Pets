@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bone
+  - pouleupeu_tentacle
+  - player
   layers:
   - Default
   - TransparentFX

@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler SharedInstance;
     private List<GameObject> objectsToPool;
     [SerializeField] private GameObject _objectToPool;
     [SerializeField] private int _amountToPool;
+    public int amountToPool { get { return _amountToPool; } }
 
-    private void Awake()
-    {
-        SharedInstance = this;
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +18,6 @@ public class ObjectPooler : MonoBehaviour
             GameObject pulledObject = (GameObject)Instantiate(_objectToPool);
             pulledObject.SetActive(false);
             objectsToPool.Add(pulledObject);
-            pulledObject.transform.SetParent(this.transform);
         }
     }
 

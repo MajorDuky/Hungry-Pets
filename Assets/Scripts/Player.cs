@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Player : Entity
+public class Player : LivingEntity
 {
     private float _horizontalInput;
     private float _verticalInput;
@@ -38,7 +38,8 @@ public class Player : Entity
             Vector3 translationX = horizontalInput * Vector3.right;
             Vector3 translationZ = verticalInput * Vector3.forward;
             Vector3 translation = new Vector3(translationX.x, 0, translationZ.z);
-            MoveEntity(translation);
+            Vector3 worldSpaceTranslation = EntityTransform.TransformDirection(Speed * Time.deltaTime * translation);
+            EntityTransform.Translate(new Vector3(worldSpaceTranslation.x, 0, worldSpaceTranslation.z), Space.World);
         }
     }
 

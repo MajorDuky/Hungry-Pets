@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class LivingEntity : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
@@ -56,15 +56,5 @@ public class Entity : MonoBehaviour
         {
             Health += healAmount;
         }
-    }
-
-    /// <summary>
-    /// Method that moves the entity in the world space based on a translation vector
-    /// </summary>
-    /// <param name="translation">Where to translate</param>
-    protected void MoveEntity(Vector3 translation)
-    {
-        Vector3 worldSpaceTranslation = EntityTransform.TransformDirection(Speed * Time.deltaTime * translation);
-        EntityTransform.Translate(new Vector3(worldSpaceTranslation.x, 0, worldSpaceTranslation.z), Space.World);
     }
 }
