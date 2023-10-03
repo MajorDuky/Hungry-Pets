@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
@@ -19,12 +18,6 @@ public class SpawnerManager : MonoBehaviour
     {
         maxUnit = entityPooler.amountToPool;
         StartCoroutine(SpawnCoroutine());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>

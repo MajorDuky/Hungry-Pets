@@ -5312,11 +5312,11 @@ MonoBehaviour:
   _fireRate: 0.5
   _fireSpeed: 0
   _reloadTime: 0
-  _dmgPerBullet: 0
+  _dmgPerBullet: 1
   _mainUIHandler: {fileID: 0}
   _gunshotParticles: {fileID: 4685552690755119250}
   _bulletSpawnerTransform: {fileID: 4869567359892687327}
-  _bulletForce: 1000
+  _bulletForce: 2000
   ammoPooler: {fileID: -1076056514207667892}
   isShooting: 0
 --- !u!114 &-1076056514207667892

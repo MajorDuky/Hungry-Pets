@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 1185095053938866755}
   - component: {fileID: 3896889747106153560}
   - component: {fileID: -3149734215170741529}
+  - component: {fileID: -133621026958236011}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Bone
@@ -405,6 +406,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-133621026958236011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391963772392679220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235042b3f92bd164fa26cda2b9b94b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  gunBehavior: {fileID: -4637238916101565616, guid: 85e9cd15da852b54dbf59773c6d94439, type: 3}
 --- !u!1 &8439375444682905545
 GameObject:
   m_ObjectHideFlags: 0

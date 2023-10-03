@@ -1,16 +1,21 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pet : LivingEntity
 {
     private Player player;
     [SerializeField] private Animator animator;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private Slider hungerBar;
+    [SerializeField] private HitCollisionBehavior hitCollisionBehavior;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>();
+        GameManager = GameObject.FindAnyObjectByType<GameManager>();
+        hitCollisionBehavior.damage = Damage;
     }
 
     // Update is called once per frame
@@ -59,5 +64,41 @@ public class Pet : LivingEntity
         {
             animator.SetTrigger("attack");
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bone"))
+        {
+            int bulletDmg = other.gameObject.GetComponent<BoneAmmoProperties>().damage;
+            if (bulletDmg != 0)
+            {
+                bool isAlive = TakeDamage(bulletDmg);
+                float valueToRetrieveFromSlider = (float)bulletDmg / MaxHealth;
+                hungerBar.value -= valueToRetrieveFromSlider;
+                if (!isAlive)
+                {
+                    DeactivateOnDeath();
+                }
+            }
+            other.gameObject.SetActive(false);
+            Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Method that deactivate the current gameobject
+    /// </summary>
+    private void DeactivateOnDeath()
+    {
+        GameManager.AddFedEnemy();
+        Health = MaxHealth;
+        hungerBar.value = 1;
+        gameObject.SetActive(false);
     }
 }

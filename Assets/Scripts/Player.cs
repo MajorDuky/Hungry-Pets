@@ -10,10 +10,11 @@ public class Player : LivingEntity
     private float minTurnAngle = -90.0f;
     private float maxTurnAngle = 90.0f;
     private float rotX;
+    [SerializeField] private MainUIHandler mainUIHandler;
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainUIHandler.UpdateHealthAmount(Health, MaxHealth);
     }
 
     // Update is called once per frame
@@ -54,5 +55,11 @@ public class Player : LivingEntity
         rotX = Mathf.Clamp(rotX, minTurnAngle, maxTurnAngle);
         Vector3 rotation = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
         transform.eulerAngles = rotation;
+    }
+
+    public void HitByEnemy(int damage)
+    {
+        TakeDamage(damage);
+        mainUIHandler.UpdateHealthAmount(Health, MaxHealth);
     }
 }

@@ -9,6 +9,7 @@ public class LivingEntity : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private int _damage;
     [SerializeField] protected Transform EntityTransform;
+    [SerializeField] protected GameManager GameManager;
     protected int Health
     {
         get { return _health; }

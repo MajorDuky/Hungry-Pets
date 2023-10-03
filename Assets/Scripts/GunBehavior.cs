@@ -90,6 +90,12 @@ public class GunBehavior : MonoBehaviour
         {
             ammoPooled.transform.position = _bulletSpawnerTransform.position;
             ammoPooled.SetActive(true);
+            BoneAmmoProperties boneAmmoScript = ammoPooled.GetComponent<BoneAmmoProperties>();
+
+            if (boneAmmoScript != null)
+            {
+                boneAmmoScript.damage = (int)_dmgPerBullet;
+            }
             
             Rigidbody rb = ammoPooled.GetComponent<Rigidbody>();
             if (rb != null)
